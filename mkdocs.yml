@@ -1,0 +1,180 @@
+site_name: SeaTable Developer Manual
+site_url: https://developer.seatable.io/
+site_author: SeaTable GmbH
+site_description: >-
+  Official SeaTable Developer Manual.
+
+# Repository
+repo_name: seatable/seatable-developer-docs
+repo_url: https://github.com/seatable/seatable-developer-docs/
+
+# Copyright
+copyright: Copyright &copy; 2022 - 2023 SeaTable GmbH
+
+# Configuration
+theme:
+  name: material
+  features:
+    - navigation.footer
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections # top-level sections are rendered as groups in the sidebar for viewports above 1220px
+    - navigation.indexes # documents can be directly attached to sections
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate # offer a comfortable and friendly way to attach arbitrary content to specific sections of code
+  custom_dir: overrides
+
+  # icon & favicon
+  logo: media/SeaTable256-256.png
+  favicon: media/seatable-favicon.ico
+
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+  - git-revision-date-localized
+  #- redirects:
+  #    redirect_maps:
+  #      'changelog/server-changelog.md': 'https://seatable.io/docs/changelog/'
+  #      'changelog/changelog-for-seatable-professional-server.md': 'https://seatable.io/docs/changelog/'
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/seatable/
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/seatable/seatable-enterprise
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/seatable/
+  status:
+    new: requires Enterprise Edition
+  analytics:
+    provider: matomo
+    site_id: 2
+    provider_url: https://wp-stats.seatable.io/
+
+extra_css:
+  - stylesheets/extra.css
+
+# Extensions: https://squidfunk.github.io/mkdocs-material/reference/
+# PyMdown Extension: https://facelessuser.github.io/pymdown-extensions/extensions/
+
+validation:
+  links:
+    absolute_links: ignore
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+  - codehilite:
+      guess_lang: true
+  - pymdownx.details # creates collapsible elements that hide their content
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences: # allows 1) nesting of fences 2) custom fences 3) disable indented code
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.keys # make entering and styling keyboard key presses easier
+  - pymdownx.tabbed: # provides a syntax to easily add tabbed Markdown content
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Introduction:
+      - index.md
+      - Requirements: introduction/requirements.md
+      - Basic concepts: introduction/basic_concepts.md
+      - Get Support: introduction/get_support.md
+  - Scripting in SeaTable:
+      - scripts/index.md
+      - JavaScript:
+          - Basic structure: scripts/javascript/basic_structure_js.md
+          - Objects & Methods:
+              - scripts/javascript/objects/index.md
+              - Tables: scripts/javascript/objects/tables.md
+              - Views: scripts/javascript/objects/views.md
+              - Columns: scripts/javascript/objects/columns.md
+              - Rows: scripts/javascript/objects/rows.md
+              - Links: scripts/javascript/objects/links.md
+              - Context: scripts/javascript/objects/context.md
+              - Utilities: scripts/javascript/objects/utilities.md
+              - Output: scripts/javascript/objects/output.md
+          - Examples:
+              - scripts/javascript/examples/index.md
+              - 1. Add rows: scripts/javascript/examples/auto-add-rows.md
+              - 2. Get incremental: scripts/javascript/examples/get-incremental.md
+              - 3. Create statistics: scripts/javascript/examples/statistics-attendance.md
+          - Common questions: scripts/javascript/common_questions.md
+      - Python:
+          - Basic structure: scripts/python/basic_structure_python.md
+          - Objects & Methods:
+              - scripts/python/objects/index.md
+              - Metadata: scripts/python/objects/metadata.md
+              - Tables: scripts/python/objects/tables.md
+              - Columns: scripts/python/objects/columns.md
+              - Rows: scripts/python/objects/rows.md
+              - Links: scripts/python/objects/links.md
+              - Files: scripts/python/objects/files.md
+              - Big data: scripts/python/objects/big_data.md
+              - Accounts: scripts/python/objects/accounts.md
+              - Users: scripts/python/objects/users.md
+              - Date Utilities: scripts/python/objects/date-utils.md
+              - Context: scripts/python/objects/context.md
+              - Constants: scripts/python/objects/constants.md
+              - Notifications: scripts/python/objects/notifications.md
+              - Websockets: scripts/python/objects/websockets.md
+          - Authorization: scripts/python/authorization_python.md
+          - Examples:
+              - scripts/python/examples/index.md
+              - 1. Send E-mails: scripts/python/examples/send_email.md
+              - 2. Generate Barcode: scripts/python/examples/generate_barcode.md
+              - 3. Generate QR-Code: scripts/python/examples/generate_qrcode.md
+              - 4. Sync MySQL: scripts/python/examples/sync_mysql.md
+              - 5. Watch Stock Price: scripts/python/examples/update_stock_price.md
+          - Common questions: scripts/python/common_questions.md
+      - Query with SQL:
+          - SQL Reference: scripts/sql/reference.md
+          - SQL Function Reference: scripts/sql/functions.md
+  - Plugin Development:
+      - plugins/index.md
+      - Environments: plugins/environments.md
+      - Available methods: plugins/methods.md
+  - Client APIs:
+      - clients/index.md
+      - Javascript API: clients/javascript_api.md
+      - PHP API: clients/php_api.md
+      - Python API: clients/python_api.md
+## open topics:
+# social cards https://squidfunk.github.io/mkdocs-material/setup/setting-up-social-cards/
+# feedback integration: ...
